@@ -1,0 +1,17 @@
+import { StyleSheet } from "react-native";
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: "#bfff00",
+    paddingHorizontal: "12px",
+    paddingVertical: "6px",
+    borderRadius: "5px",
+  },
+  textButton: {
+    fontSize: "1.25rem",
+    fontWeight: "bold",
+    color: "#333",
+  },
+});
+
+export default styles;
