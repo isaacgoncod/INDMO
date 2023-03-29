@@ -4,7 +4,6 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   TouchableOpacity,
 } from "react-native";
 
@@ -14,36 +13,46 @@ export default function App() {
   const [resultadoA, setResultadoA] = new useState(0);
   const [resultadoB, setResultadoB] = new useState(0);
 
-  const operacaoA = () => {
-    setResultadoA((1.73 * comprimento * corrente) / 510.4);
-  };
-
-  const operacaoB = () => {
-    setResultadoB((2 * comprimento * corrente) / 294.64);
+  const operacao = () => {
+    if (comprimento == 0 || corrente == 0) {
+      alert(`Preecha os campos necessários`);
+    }
+    if (comprimento > 0 && comprimento <= 30) {
+      alert(
+        `Para valor de comprimento menor que 30 metros, utiliza-se a tabela de conversão rápida.`
+      );
+    }
+    if (comprimento > 30.0) {
+      setResultadoA((1.73 * comprimento * corrente) / 510.4);
+      setResultadoB((2 * comprimento * corrente) / 294.64);
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Comprimento:</Text>
+      <Text style={styles.title}>Comprimento (Metros):</Text>
       <TextInput
+        placeholder="Ex: 50"
         style={styles.input}
         onChangeText={(val) => setComprimento(Number(val))}
       />
 
-      <Text style={styles.title}>Corrente:</Text>
+      <Text style={styles.title}>Corrente (Ampéres):</Text>
       <TextInput
+        placeholder="Ex: 10"
         style={styles.input}
         onChangeText={(val) => setCorrente(Number(val))}
       />
-      <Button
-        title="Resultado"
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => {
-          operacaoA();
-          operacaoB();
+          operacao();
         }}
-      />
-      <Text style={styles.title}>220V: {resultadoA}</Text>
-      <Text style={styles.title}>127V: {resultadoB}</Text>
+      >
+        <Text style={styles.textButton}>Calcular</Text>
+      </TouchableOpacity>
+      <Text style={styles.title}>220V: {resultadoA.toFixed(3)} mm</Text>
+      <Text style={styles.title}>127V: {resultadoB.toFixed(3)} mm</Text>
     </View>
   );
 }
@@ -62,17 +71,15 @@ const styles = StyleSheet.create({
     fontSize: "1.25rem",
   },
   input: {
-    borderBottom: "1px",
-    borderBottomColor: "#333",
     backgroundColor: "#e5e5e5",
-    borderRadius: "7px",
-    padding: "5px",
-    border: "2px solid black",
+    borderRadius: "15px",
+    padding: "10px",
+    border: "1px solid #333",
   },
   button: {
     padding: "15px",
     backgroundColor: "#df5800",
-    borderRadius: "7px",
+    borderRadius: "15px",
     boxShadow: "0px 0px 5px 0px",
   },
   textButton: {
