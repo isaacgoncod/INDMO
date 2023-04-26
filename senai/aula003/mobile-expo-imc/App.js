@@ -18,9 +18,26 @@ export default function App() {
       alert(`Preecha os campos necessários`);
     }
 
-    imc = peso / (altura * altura);
+    let calcImc = peso / altura ** 2;
 
-    setImc(imc.toFixed(2));
+    let calcDiag = "";
+
+    if (calcImc < 18.5) {
+      calcDiag = "Abaixo do peso";
+    } else if (calcImc >= 18.5 && calcImc <= 24.9) {
+      calcDiag = "Peso normal";
+    } else if (calcImc >= 25 && calcImc <= 29.9) {
+      calcDiag = "Sobrepeso";
+    } else if (calcImc >= 30 && calcImc <= 34.9) {
+      calcDiag = "Obesidade grau 1";
+    } else if (calcImc >= 35 && calcImc <= 39.9) {
+      calcDiag = "Obesidade grau 2";
+    } else {
+      calcDiag = "Obesidade grau 3";
+    }
+
+    setDiagnostico(calcDiag);
+    setImc(calcImc.toFixed(2));
   };
 
   return (
@@ -34,7 +51,7 @@ export default function App() {
       <Text style={styles.title}>Altura M:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={(val) => setAltura(Number(val))}
+        onChangeText={(val) => setAltura(Number(val.replaceAll(",", ".")))}
       />
       <TouchableOpacity
         style={styles.button}
@@ -44,8 +61,8 @@ export default function App() {
       >
         <Text style={styles.textButton}>Calcular</Text>
       </TouchableOpacity>
-      <Text style={styles.title}>IMC: {imc.toFixed(3)} mm</Text>
-      <Text style={styles.title}>Diagnóstico: {diagnostico.toFixed(3)} mm</Text>
+      <Text style={styles.title}>IMC: {imc}</Text>
+      <Text style={styles.title}>Diagnóstico: {diagnostico}</Text>
     </View>
   );
 }
