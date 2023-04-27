@@ -37,20 +37,22 @@ export default function App() {
     }
 
     setDiagnostico(calcDiag);
-    setImc(calcImc.toFixed(2));
+    setImc(calcImc.toFixed(2).replaceAll(".", ","));
   };
 
   return (
     <View style={styles.container}>
+      <Text style={styles.titleApp}>Calculadora de IMC</Text>
       <Text style={styles.title}>Peso Kg:</Text>
       <TextInput
         style={styles.input}
+        placeholder="Ex: 62"
         onChangeText={(val) => setPeso(Number(val))}
       />
-
       <Text style={styles.title}>Altura M:</Text>
       <TextInput
         style={styles.input}
+        placeholder="Ex: 1,73"
         onChangeText={(val) => setAltura(Number(val.replaceAll(",", ".")))}
       />
       <TouchableOpacity
@@ -74,6 +76,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: "1.5rem",
+  },
+  titleApp: {
+    color: "#333",
+    fontWeight: "bold",
+    fontSize: "1.25rem",
+    marginBottom: "50px",
   },
   title: {
     color: "#333",
