@@ -15,6 +15,10 @@ export default function App() {
   const [montante, setMontante] = new useState(0);
 
   const operacao = () => {
+    if (!valor || !parcela || !juros) {
+      return alert("Preencha os campos necessários");
+    }
+
     let calcMontante = calcularJurosCompostos(valor, juros, parcela);
 
     let calcValParcela = calcMontante / parcela;

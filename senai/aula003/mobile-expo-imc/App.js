@@ -14,8 +14,8 @@ export default function App() {
   const [diagnostico, setDiagnostico] = new useState(0);
 
   const operacao = () => {
-    if (peso <= 0 || altura <= 0) {
-      alert(`Preecha os campos necessários`);
+    if (!peso || !altura) {
+      return alert(`Preecha os campos necessários`);
     }
 
     let calcImc = peso / altura ** 2;
@@ -47,6 +47,7 @@ export default function App() {
       <TextInput
         style={styles.input}
         placeholder="Ex: 62"
+        required
         onChangeText={(val) => setPeso(Number(val))}
       />
       <Text style={styles.title}>Altura M:</Text>
