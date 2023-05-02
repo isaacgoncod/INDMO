@@ -11,8 +11,7 @@ export default function App() {
         <Stack.Screen
           name="ClientesScreeen"
           component={ClientesScreeen}
-          options={{ title: 'Lista de Clientes' }}
-        />
+          options={{ title: 'Lista de Clientes' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

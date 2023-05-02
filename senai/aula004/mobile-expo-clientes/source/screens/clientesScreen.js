@@ -7,8 +7,8 @@ export default function ClientesScreen({ navigation }) {
     <View style={styles.container}>
       <FlatList
         data={clientes}
-        renderItem={({ item }) => {
-          <Text style={styles.text}>Cliente</Text>;
+        renderItem={(item) => {
+          return <Text style={styles.text}>teste</Text>;
         }}
       />
     </View>
