@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import clientes from '../mocks/clientesMock';
+import { View, FlatList, StyleSheet } from 'react-native';
+import Clientes from '../mocks/clientesMock';
+import ItemLista from '../components/ItemLista';
 
 export default function ClientesScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={clientes}
-        renderItem={(item) => {
-          return <Text style={styles.text}>teste</Text>;
-        }}
+        data={Clientes}
+        style={styles.list}
+        renderItem={({ item }) => <ItemLista props={item} />}
       />
     </View>
   );
@@ -24,8 +24,5 @@ const styles = StyleSheet.create({
   list: {
     width: '100%',
     paddingHorizontal: 20,
-  },
-  text: {
-    fontSize: 20,
   },
 });

@@ -5,20 +5,41 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import MaskInput from 'react-native-mask-input';
 
-export default function FormIMC() {
-  const [peso, setPeso] = React.useState('');
-  const [altura, setAltura] = React.useState('');
-  const [imc, setImc] = React.useState('');
+export default function FormEmprestimo() {
+  const [valor, setValor] = new useState(0);
+  const [juros, setJuros] = new useState(0);
+  const [parcela, setParcela] = new useState(0);
+  const [valParcela, setValParcela] = new useState(0);
+  const [montante, setMontante] = new useState(0);
 
-  const calcImc = () => {
-    const numberPeso = Number(peso);
-    const numberAltura = Number(altura);
-    setImc((numberPeso / numberAltura ** 2).toFixed(2));
+  const operacao = () => {
+    if (!valor || !parcela || !juros) {
+      return alert('Preencha os campos necessários');
+    }
+
+    let calcMontante = calcularJurosCompostos(valor, juros, parcela);
+
+    let calcValParcela = calcMontante / parcela;
+
+    setMontante(formatarMoeda(calcMontante.toFixed(2)));
+    setValParcela(formatarMoeda(calcValParcela.toFixed(2)));
   };
 
+  function calcularJurosCompostos(valorPrincipal, taxaDeJuros, periodoDeTempo) {
+    let montante =
+      valorPrincipal * Math.pow(1 + taxaDeJuros / 100, periodoDeTempo);
+    return montante;
+  }
+
+  function formatarMoeda(moeda) {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(moeda);
+  }
   return (
     <>
       <View style={styles.container}>
@@ -26,27 +47,42 @@ export default function FormIMC() {
           <Text>Calculadora de Juros</Text>
 
           <MaskInput
-            mask={[/\d/, /\d/, /\d/, '.', /\d/]}
+            mask={[/\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/]}
             style={styles.textInput}
-            onChangeText={(masked, unmasked) => setPeso(masked)}
-            value={peso}
-            placeholder="Digite seu peso"
+            onChangeText={(masked, unmasked) => setValor(masked)}
+            value={valor}
+            placeholder="Digite o valor inicial"
             keyboardType="numeric"
           />
 
           <MaskInput
             mask={[/\d/, '.', /\d/, /\d/]}
             style={styles.textInput}
-            onChangeText={(masked, unmasked) => setAltura(masked)}
-            value={altura}
-            placeholder="Digite sua altura"
+            onChangeText={(masked, unmasked) => setJuros(masked)}
+            value={juros}
+            placeholder="Digite o juros"
             keyboardType="numeric"
           />
 
-          <TouchableOpacity style={styles.button} onPress={calcImc}>
+          <MaskInput
+            mask={[/\d/, '.', /\d/, /\d/]}
+            style={styles.textInput}
+            onChangeText={(masked, unmasked) => setParcela(masked)}
+            value={parcela}
+            placeholder="Digiteo número de parcelas"
+            keyboardType="numeric"
+          />
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              return operacao();
+            }}
+          >
             <Text>Calcular</Text>
           </TouchableOpacity>
-          <Text>Seu IMC é: {imc}</Text>
+          <Text>Montante: {montante}</Text>
+          <Text>Val. p/ parcela: {valParcela}</Text>
         </View>
       </View>
     </>

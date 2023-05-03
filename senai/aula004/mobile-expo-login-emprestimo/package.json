@@ -7,8 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "style:check": "prettier --check ./src",
-    "style:fix": "prettier --write ./src"
+    "style:check": "prettier --check 'src/**/**/*.js'",
+    "style:fix": "prettier --write 'src/**/**/*.js'"
   },
   "dependencies": {
     "@expo/webpack-config": "^18.0.1",
