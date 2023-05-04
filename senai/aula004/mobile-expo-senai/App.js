@@ -15,7 +15,7 @@ export default function App() {
           component={CategoriaScreen}
           options={{ title: 'Categorias de curso' }}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="CursoScreen"
           component={CursoScreen}
           options={{ title: 'Cursos' }}
@@ -23,8 +23,8 @@ export default function App() {
         <Stack.Screen
           name="CursoDetalhe"
           component={CursoDetalheScreen}
-          options={{ title: 'Detalhes do curso' }}
-        /> */}
+          options={{ title: 'Sobre o curso' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
