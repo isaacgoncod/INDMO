@@ -16,6 +16,9 @@ export default function DetalhesScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.infoContainerTitle}>
+        <Text style={styles.label}>{curso.modalidade}</Text>
+      </View>
       <View style={styles.infoContainer}>
         <Text style={styles.label}>Área:</Text>
         <Text style={styles.info}>{curso.area}</Text>

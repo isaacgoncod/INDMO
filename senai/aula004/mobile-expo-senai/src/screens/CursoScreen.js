@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import Cursos from '../mocks/cursosMock';
+export default function CursoScreen({ navigation, route }) {
+  const cursos = route.params.filterCursos;
 
-export default function CursoScreen({ navigation }) {
   const abrirDetalhes = (dados) => {
     navigation.navigate('CursoDetalhe', { dados });
   };
@@ -17,14 +17,14 @@ export default function CursoScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={Cursos}
+        data={cursos}
         style={styles.list}
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.item}
             onPress={() => abrirDetalhes(item)}
           >
-            <Text style={styles.itemText}>{item.area}</Text>
+            <Text style={styles.itemText}>{item.titulo}</Text>
           </TouchableOpacity>
         )}
       />

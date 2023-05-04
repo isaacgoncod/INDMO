@@ -11,8 +11,10 @@ import {
 import cursosMock from '../mocks/cursosMock';
 
 export default function CategoriaScreen({ navigation }) {
-  function abrirCursos() {
-    navigation.navigate('CursoScreen');
+  function abrirCursos(dados, tipo) {
+    let filterCursos = dados.filter((cursos) => cursos.tipo.includes(tipo));
+
+    navigation.navigate('CursoScreen', { filterCursos });
   }
 
   return (
@@ -20,14 +22,20 @@ export default function CategoriaScreen({ navigation }) {
       <View style={styles.list}>
         <TouchableOpacity
           style={styles.item}
-          onPress={() => abrirCursos(cursosMock)}
+          onPress={() => abrirCursos(cursosMock, 'CT')}
         >
           <Text style={styles.itemText}>CURSOS TÉCNICOS</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => abrirCursos(item)}>
+        <TouchableOpacity
+          style={styles.item}
+          onPress={() => abrirCursos(cursosMock, 'AI')}
+        >
           <Text style={styles.itemText}>APRENDIZAGEM INDUSTRIAL</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => abrirCursos(item)}>
+        <TouchableOpacity
+          style={styles.item}
+          onPress={() => abrirCursos(cursosMock, 'FIC')}
+        >
           <Text style={styles.itemText}>FORMAÇÃO INICIAL E CONTINUADA</Text>
         </TouchableOpacity>
       </View>
