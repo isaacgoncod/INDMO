@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginForm from './src/components/LoginForm';
 import CategoriaScreen from './src/screens/CategoriaScreen';
 import CursoScreen from './src/screens/CursoScreen';
 import CursoDetalheScreen from './src/screens/CursoDetalheScreen';
@@ -11,7 +12,12 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="CategoriaScreeen"
+          name="Login"
+          component={LoginForm}
+          options={{ title: 'Bem vindo ' }}
+        />
+        <Stack.Screen
+          name="CategoriaScreen"
           component={CategoriaScreen}
           options={{ title: 'Categorias de curso' }}
         />
