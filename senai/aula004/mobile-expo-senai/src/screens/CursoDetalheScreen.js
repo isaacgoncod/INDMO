@@ -55,7 +55,7 @@ export default function DetalhesScreen({ navigation, route }) {
         <Text style={styles.info}>{curso.unidade.endereco.cep}</Text>
       </View>
       <TouchableOpacity onPress={handleLinkPress} style={styles.btn}>
-        <Text style={styles.label}>Saber Mais</Text>
+        <Text style={styles.label}>SABER MAIS</Text>
       </TouchableOpacity>
     </View>
   );
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     width: '100%',
     flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: '1.5rem',
     justifyContent: 'flex-start',
     padding: '10px',
     backgroundColor: '#2884b2',
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     marginBottom: 10,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     backgroundColor: '#f0ad4e',
     padding: '10px',
     borderRadius: '7px',
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
-    padding: '10px',
+    padding: '15px',
     backgroundColor: '#ff6347',
     borderRadius: '7px',
   },
